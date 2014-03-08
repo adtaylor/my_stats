@@ -313,6 +313,7 @@ DEPENDENCIES
   hub
   jbuilder (~> 1.2)
   jquery-rails
+  kgio (= 2.9.2)
   launchy
   mysql2
   omniauth-fitbit
