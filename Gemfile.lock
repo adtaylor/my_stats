@@ -325,6 +325,7 @@ DEPENDENCIES
   rb-inotify
   rolify
   rspec-rails
+  sass (= 3.3.0)
   sass-rails (~> 4.0.0)
   simple_form
   turbolinks

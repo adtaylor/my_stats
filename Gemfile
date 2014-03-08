@@ -19,6 +19,7 @@ gem 'simple_form'
 gem 'unicorn'
 gem 'unicorn-rails'
 gem 'fitgem'
+gem 'sass', '3.3.0'
 group :development do
   gem 'pg'
   gem 'better_errors'
