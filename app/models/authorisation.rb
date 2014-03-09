@@ -1,9 +1,20 @@
 class Authorisation < ActiveRecord::Base
   belongs_to :user
 
+  after_create :add_subscription
+
+  def add_subscription
+    self.send("#{self.provider.downcase}_add_subscription")
+  end
+
+
   def client
     self.send("#{self.provider.downcase}_client")
   end
+
+  #
+  # Fitbit Shiz TODO: Move this out I think
+  #
 
   def fitbit_client
     _client ||= Fitgem::Client.new(
@@ -13,8 +24,13 @@ class Authorisation < ActiveRecord::Base
       :secret => self.secret,
       :user_id => self.uid
     )
-    opts = { :subscriber_id => self.uid, :type => :all }
-    _client.body_weight({:base_date => "2014-02-01",:end_date => "2014-02-28"})
   end
+
+  def fitbit_add_subscription
+    fb_client = client
+    opts = { :subscriber_id => self.uid, :subscription_id => self.user_id, :type => :all }
+    fb_client.create_subscription(opts)
+  end
+
 
 end
