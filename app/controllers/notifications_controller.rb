@@ -35,7 +35,7 @@ class NotificationsController < ApplicationController
     puts "CREATE"
     JSON[params["updates"].read].each do |notification|
       user = User.find(notification["subscriptionId"])
-      if user.exists?
+      if user
         case notification["collectionType"]
           when "sleep"
             Notification.new({ user_id: notification["subscriptionId"], provider: params[:app_id], body: user.fitbit.client.sleep_on_date(notification["date"]).to_str  }).save
