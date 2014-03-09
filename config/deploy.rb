@@ -8,8 +8,8 @@ set :ssh_options, { :forward_agent => true }
 
 set :application, "my_stats"
 set :repository, "git@github.com:adtaylor/my_stats.git"
-set :user, "root"
-set :use_sudo, false
+set :user, "ubuntu"
+set :use_sudo, true
 
 server "54.72.46.216", :web, :app, :db, :primary => true
 
