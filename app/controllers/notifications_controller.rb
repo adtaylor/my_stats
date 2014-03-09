@@ -6,12 +6,16 @@ class NotificationsController < ApplicationController
   # GET /notifications
   # GET /notifications.json
   def index
+    puts "=========================="
+    puts "INDEX"
     @notifications = Notification.where({user: current_user})
   end
 
   # GET /notifications/1
   # GET /notifications/1.json
   def show
+    puts "=========================="
+    puts "SHOW"
   end
 
   # GET /notifications/new
@@ -26,6 +30,8 @@ class NotificationsController < ApplicationController
   # POST /notifications
   # POST /notifications.json
   def create
+    puts "=========================="
+    puts "CREATE"
     params[:_json].each do |notification|
       if User.exists?(notification[:subscriptionId])
         n = Notification.new({ user_id: notification[:subscriptionId], provider: params[:app_id], body: notification.to_s  })
@@ -38,6 +44,8 @@ class NotificationsController < ApplicationController
   # PATCH/PUT /notifications/1
   # PATCH/PUT /notifications/1.json
   def update
+    puts "=========================="
+    puts "UPDATE"
     respond_to do |format|
       if @notification.update(notification_params)
         format.html { redirect_to @notification, notice: 'Notification was successfully updated.' }
