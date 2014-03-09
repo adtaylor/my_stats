@@ -30,10 +30,9 @@ class NotificationsController < ApplicationController
   # POST /notifications
   # POST /notifications.json
   def create
-    render status: 204
     puts "=========================="
     puts "CREATE"
-    params[:_json].each do |notification|
+    params["updates"].each do |notification|
       if User.exists?(notification[:subscriptionId])
         n = Notification.new({ user_id: notification[:subscriptionId], provider: params[:app_id], body: notification.to_s  })
         n.save
