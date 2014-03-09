@@ -33,7 +33,7 @@ class NotificationsController < ApplicationController
   def create
     puts "=========================="
     puts "CREATE"
-    params["updates"].each do |notification|
+    params["updates"].read.each do |notification|
       if User.exists?(notification[:subscriptionId])
         n = Notification.new({ user_id: notification[:subscriptionId], provider: params[:app_id], body: notification.to_s  })
         n.save
