@@ -28,7 +28,7 @@ class Authorisation < ActiveRecord::Base
 
   def fitbit_add_subscription
     fb_client = client
-    opts = { :subscriber_id => self.uid, :subscription_id => self.user_id, :type => :all }
+    opts = { :subscription_id => self.user_id, :type => :all }
     fb_client.create_subscription(opts)
   end
 
