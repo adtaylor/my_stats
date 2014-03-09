@@ -33,7 +33,7 @@ class NotificationsController < ApplicationController
   def create
     puts "=========================="
     puts "CREATE"
-    params["updates"].read.each do |notification|
+    JSON[params["updates"].read].each do |notification|
       user = User.find(notification["subscriptionId"])
       if user.exists?
         case notification["collectionType"]
