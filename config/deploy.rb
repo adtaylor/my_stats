@@ -17,7 +17,7 @@ after "deploy:finalize_update", "symlink:all"
 
 namespace :symlink do
   task :env do
-    run "ln -nfs #{shared_path}/config/.env #{release_path}/config/.env"
+    run "ln -nfs #{shared_path}/config/.env #{release_path}/.env"
   end
   task :db do
     run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
