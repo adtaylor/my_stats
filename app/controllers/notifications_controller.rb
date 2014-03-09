@@ -30,6 +30,7 @@ class NotificationsController < ApplicationController
   # POST /notifications
   # POST /notifications.json
   def create
+    render status: 204
     puts "=========================="
     puts "CREATE"
     params[:_json].each do |notification|
