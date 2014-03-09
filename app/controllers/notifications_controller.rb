@@ -2,6 +2,7 @@ class NotificationsController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_notification, only: [:show, :edit, :update, :destroy]
   skip_before_filter :verify_authenticity_token, only: [:create]
+  skip_before_filter :authenticate_user!, only: [:create]
 
   # GET /notifications
   # GET /notifications.json
