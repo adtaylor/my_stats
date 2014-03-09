@@ -16,11 +16,15 @@ server "54.72.46.216", :web, :app, :db, :primary => true
 after "deploy:finalize_update", "symlink:all"
 
 namespace :symlink do
+  task :env do
+    run "ln -nfs #{shared_path}/config/.env #{release_path}/config/.env"
+  end
   task :db do
     run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
   end
   task :all do
     symlink.db
+    symlink.env
   end
 end
 
@@ -38,3 +42,11 @@ end
 
 after "deploy:restart", "deploy:cleanup"
 
+namespace :dotenv do
+  
+  desc "Upload local .env file to server"
+  task :upload do 
+    top.upload File.expand_path('../../.env', __FILE__) , "#{shared_path}/config/.env"
+  end
+
+end
