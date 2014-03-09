@@ -32,7 +32,8 @@ class NotificationsController < ApplicationController
   def sleep_logger
     @@sleep_logger ||= Logger.new("#{Rails.root}/log/sleep.log")
     @@sleep_logger.formatter = proc  do |sev, ts, prog, msg|
-      "#{ts.strftime("%Y-%m-%dT%H:%M:%S")} #{sev} [#{prog}] #{msg}"
+      hash = { type: "sleep", date:  ts.strftime("%Y-%m-%dT%H:%M:%S"), data: msg }
+      hash.to_json
     end
     @@sleep_logger
   end
