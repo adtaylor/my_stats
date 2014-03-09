@@ -156,6 +156,9 @@ GEM
       celluloid-io (>= 0.15.0)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
+    logstash-event (1.2.02)
+    logstash-logger (0.4.0)
+      logstash-event (~> 1.2)
     lumberjack (1.0.4)
     mail (2.5.4)
       mime-types (~> 1.16)
@@ -316,6 +319,7 @@ DEPENDENCIES
   jquery-rails
   kgio (= 2.9.2)
   launchy
+  logstash-logger
   mysql2
   omniauth-fitbit
   pg

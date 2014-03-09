@@ -28,6 +28,11 @@ class NotificationsController < ApplicationController
   def edit
   end
 
+
+  def sleep_logger
+    @@sleep_logger ||= Logger.new("#{Rails.root}/log/sleep.log")
+  end
+
   # POST /notifications
   # POST /notifications.json
   def create
@@ -39,7 +44,8 @@ class NotificationsController < ApplicationController
         case notification["collectionType"]
           when "sleep"
             user.fitbit.client.sleep_on_date(notification["date"])["sleep"].each do |data|
-              Notification.new({ user_id: notification["subscriptionId"], provider: params[:app_id], body: data  }).save
+              sleep_event = { user_id: notification["subscriptionId"], provider: params[:app_id], body: data  }
+              sleep_logger.info sleep_event.to_json
             end
         end
       end
