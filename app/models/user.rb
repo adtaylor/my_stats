@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   end
 
   def fitbit?
-    fitbit.exists?
+    self.authorisations.where(provider: "fitbit").exists?
   end
 
   #

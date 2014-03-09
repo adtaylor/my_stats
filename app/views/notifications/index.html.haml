@@ -1,7 +1,7 @@
 %h1 Listing notifications
 
 - if current_user.fitbit?
-  %pre= current_user.fitbit.client.subscriptions.to_yaml
+  %pre= current_user.fitbit.client.subscriptions({type: :all})
 
 %table
   %tr
