@@ -34,6 +34,7 @@ class NotificationsController < ApplicationController
     @@sleep_logger.formatter = proc  do |sev, ts, prog, msg|
       "#{ts.strftime("%Y-%m-%dT%H:%M:%S")} #{sev} [#{prog}] #{msg}"
     end
+    @@sleep_logger
   end
 
   # POST /notifications
